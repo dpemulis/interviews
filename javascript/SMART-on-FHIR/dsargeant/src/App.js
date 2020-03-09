@@ -5,7 +5,6 @@ import Table from "./Table";
 import Patient from "./Patient";
 
 class App extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -23,19 +22,11 @@ class App extends React.Component {
   }
 
   handleSubmit(e) {
-    const { value } = this.state
+    const { value } = this.state;
     e.preventDefault();
     this.setState({ value: "", loading: true });
-    getPatient(value).then(patient =>
-      this.setState({ patient })
-    );
-    getConditions(value)
-      .then(data =>
-        this.setState({ loading: false, data })
-      )
-      .catch(err =>
-        this.setState({ loading: false, data: err })
-      );
+    getPatient(value).then(patient => this.setState({ patient }));
+    getConditions(value).then(data => this.setState({ loading: false, data }));
   }
 
   render() {
@@ -43,7 +34,7 @@ class App extends React.Component {
     const { name, dob, gender } = this.state.patient;
     return (
       <>
-        <div style={{ width: "20%", float: "left"}}>
+        <div style={{ width: "20%", float: "left" }}>
           <Search
             loading={loading}
             value={value}
